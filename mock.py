@@ -23,6 +23,11 @@ def start(context = [], argv = []):
 
 def request(flow):
 
+    if flow.request.host == 'web':
+        flow.request.scheme = 'http'
+        flow.request.port = 80
+        flow.request.host = 'dosje.in'
+
     r = requests.head("http://internal")
     
     if r.status_code == 200 and flow.request.url.find('lido.asp') > -1 and flow.request.host != 'internal':
