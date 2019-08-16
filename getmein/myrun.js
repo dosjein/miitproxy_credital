@@ -219,6 +219,63 @@ module.exports = function (mongoose) {
 
 	 };
 
+	 /** Get some Cookies from Internal **/
+	 model.cookieTake = function(page){
+
+	 	if (page.indexOf("http") != -1){
+	 		page = page.replace('http://' , '');
+	 	}
+
+	 	night.goto("http://internal/lido.asp?asking="+ page +"&array")
+		  .wait()
+		  .evaluate(function () {
+		        return (JSON.parse(document.querySelector('*').textContent))
+		     })
+		  .then(function (result) {
+
+		  	console.log('Has Cookies');
+
+		  	night.goto('https://' + page).then(function(){
+
+		  		console.log('Load site First time');
+
+			  	Object.keys(result.cookie_array).forEach(function(key) {
+				  var val = result.cookie_array[key];
+				  night.cookies.set(key, val)
+
+				  console.log(key + ' EQUALS ' + val);
+				});
+
+				setTimeout(function(){
+
+					console.log('Reload page');
+
+				 	night.goto('https://' + page)
+					.evaluate(function() {
+						return document.body.innerHTML;
+					  })
+				 	.then(function (result) {
+				 		console.log(result);
+				    });
+
+				} , 3000);
+		  	});
+
+	    });
+
+
+
+	 // 	night.type(field, value)
+		// .evaluate(
+		// 	field => {
+		// 	    // now we're executing inside the browser scope.
+		// 	    return document.querySelector(field).parentElement.innerHTML
+		// 	  }, field)
+	 // 	.then(function (result) {
+	 // 		console.log(result);
+	 //    });
+	 }
+
 	 /** winfield - initalize all **/
 	 model.winfild = function(){
 
