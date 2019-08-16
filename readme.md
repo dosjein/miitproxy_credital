@@ -35,3 +35,7 @@
 
 night - initilized instance of nigtmare
 
+
+Some stuff is understandable from docker-compose file
+
+Used MitmProxy , NightmareJs , Laravel 5.* , Docker , MSF ... 
