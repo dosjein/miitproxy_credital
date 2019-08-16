@@ -1,0 +1,14 @@
+.env
+android
+bs4/
+ca/*
+getmein/node_modules
+getmein/package-lock.json
+getmein/core
+android_emulator
+storage/*
+logs/*
+msf/*
+root/*
+screenshots/*
+

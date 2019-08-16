@@ -1,0 +1,45 @@
+version: '3'
+services:
+    web:
+        restart: always
+        image: johnmccabe/mitmweb:v1.0
+        ports:
+            - 8080:8080
+            - 8081:8081
+        volumes:
+            - ./:/opt/project
+            - ./root:/root
+        entrypoint: [ /opt/project/keeplevel.sh ]
+    ngrok:
+        restart: always
+        ports:
+            - "0.0.0.0:4040:4040"
+        image: wernight/ngrok
+        links:
+            - "web"
+        env_file:
+            - ./.env
+    scraper:
+        restart: always
+        image: shivergard/scrape-mare
+        volumes:
+            - ./getmein:/opt/project
+            - ./:/opt/storage
+        env_file:
+            - ./.env
+        command: ["/opt/project/processor.sh"]
+    android:
+        restart: always
+        image: phocean/msf
+        env_file:
+            - ./.env
+        volumes:
+            - ./msf:/root/.msf4
+            - /tmp/msf:/tmp/data
+        ports:
+            - 9990-9999:9990-9999
+        command: ["sleep","infinity"]
+    internal:
+        image: shivergard/docker-webserver
+        volumes:
+            - ./internal:/var/www

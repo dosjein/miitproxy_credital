@@ -1,0 +1,27 @@
+{
+  "name": "screenshoter",
+  "version": "1.0.0",
+  "description": "NightmareJs screenshoting service",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dosjein/scrapemare.git"
+  },
+  "keywords": [
+    "scrape",
+    "phantomjs",
+    "nightmarejs"
+  ],
+  "author": "Ronalds Sovas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dosjein/scrapemare/issues"
+  },
+  "homepage": "https://github.com/dosjein/scrapemare#readme",
+  "dependencies": {
+    "nightmare": "*",
+    "nodejs-tail": "^1.1.0"
+  }
+}
