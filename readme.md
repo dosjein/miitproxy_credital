@@ -32,6 +32,7 @@
 - fillField(selector , value) - fills element with value
 - fillFieldJs(selector , value) - fills element with value using execute + javascript
 - tinder() - tinder is tinder... no comments on that now
+- cookieTake(siteName) - takes cookie from saved ones (with was done using #mockRequests) + open page to see test
 
 night - initilized instance of nigtmare
 
