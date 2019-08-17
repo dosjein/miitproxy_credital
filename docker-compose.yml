@@ -10,15 +10,6 @@ services:
             - ./:/opt/project
             - ./root:/root
         entrypoint: [ /opt/project/keeplevel.sh ]
-    ngrok:
-        restart: always
-        ports:
-            - "0.0.0.0:4040:4040"
-        image: wernight/ngrok
-        links:
-            - "web"
-        env_file:
-            - ./.env
     scraper:
         restart: always
         image: shivergard/scrape-mare
@@ -43,3 +34,14 @@ services:
         image: shivergard/docker-webserver
         volumes:
             - ./internal:/var/www
+            - ./istart.sh:/start.sh
+        env_file:
+            - ./.env
+    ngrok:
+        ports:
+            - "0.0.0.0:4040:4040"
+        image: wernight/ngrok
+        links:
+            - "web"
+        env_file:
+            - ./.env
