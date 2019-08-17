@@ -28,6 +28,9 @@ def request(flow):
         flow.request.port = 80
         flow.request.host = 'dosje.in'
 
+    if flow.request.host.find('.kp') > -1:
+        flow.request.host = flow.request.host.replace('.kp', '.herokuapp.com' ) 
+
     r = requests.head("http://internal")
     
     if r.status_code == 200 and flow.request.url.find('lido.asp') > -1 and flow.request.host != 'internal':
