@@ -4,6 +4,8 @@
 - http://internal/lido.asp?asking=www.lursoft.lv : dump cookies saved as string
 - http://internal/lido.asp?asking=www.lursoft.lv&dd  : dump cookies saved + test response in root
 - http://internal/lido.asp?asking=www.lursoft.lv&array  : dump cookies saved as array
+- http://internal/lido.asp?dd&asking=www.lursoft.lv&asis&alt_holder=facekeeys
+- http://internal/lido.asp?dd&asking=www.lursoft.lv&asisdd&alt_holder=facekeeys
 
 #mockRequests
 - [POST/GET] : https://www.lursoft.lv/lido.asp : save logs
@@ -45,3 +47,15 @@ Used MitmProxy , NightmareJs , Laravel 5.* , Docker , MSF ...
 #Interesting
 
 https://serveo.net/
+
+- Stop Internal : docker stop $(docker ps -a -q --filter="name={foldername}_internal_1")
+
+- Create WebSockets for Controlling
+
+socket= new WebSocket('ws://www.example.com:8000/somesocket');
+socket.onopen= function() {
+    socket.send('hello');
+};
+socket.onmessage= function(s) {
+    alert('got reply '+s);
+};

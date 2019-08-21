@@ -45,6 +45,11 @@ function postgetsLido (Request $request) {
         if (!$request->has('cookies')  && isset($cookieList[$request->get('asking')])){
 
             if (!$request->has('asis')){
+
+                if ($request->has('asisdd')){
+                    dd($cookieList[$request->get('asking')]);
+                }
+
                 $parts = explode("(b'Cookie'", $cookieList[$request->get('asking')]);
 
                 $parts2 = explode("')", $parts[1]);
